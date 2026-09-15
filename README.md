@@ -1,67 +1,34 @@
-# TASK-1-Student-Grade-Tracker
+# CodeAlpha Java Development Internship Tasks
 
-A comprehensive Student Grade Tracker project built as part of the CodeAlpha Java Development Internship. Includes both a full Java Swing Desktop Application and an Interactive Web Frontend.
-
----
-
-## 🌟 Project Overview
-
-The **Student Grade Tracker** allows educators and students to dynamically record, analyze, and visualize academic performance. It automatically calculates key metrics such as **Class Average**, **Highest Score**, **Lowest Score**, and **Total Records**.
-
-### Features
-
-- 🖥️ **Java Swing Desktop Application**:
-  - Clean GUI built with `JFrame`, `JTextField`, `JButton`, `JTextArea`, and dynamic `JLabel` statistics cards.
-  - Backend data management powered by `ArrayList<Double>`.
-  - Input validation with `JOptionPane` popups for non-numeric or out-of-range inputs.
-
-- 🌐 **Web Frontend Interface**:
-  - Modern, responsive dashboard created using HTML5 and vanilla CSS.
-  - Interactive table report with performance grade badges (`Grade A+`, `Grade A`, `Grade B`, `Grade C`, `Grade F`).
-  - Flexbox & Grid layouts styled with a soft blue theme.
+This repository contains all assigned tasks completed during the **CodeAlpha Java Development Internship**.
 
 ---
 
-## 📂 Project Structure
+## 📁 Repository Index & Task Directory
 
-```text
-├── StudentGradeTracker.java  # Java Swing GUI & backend logic (ArrayList<Double>)
-├── StudentGradeTracker.class # Compiled Java bytecode
-├── index.html                # HTML5 Web UI layout
-├── style.css                 # Custom CSS styling (Soft blue design system)
-├── app.js                    # Client-side JavaScript logic
-└── README.md                 # Project documentation
-```
+| Task # | Project Title | Description | Technologies Used | Link |
+| :---: | :--- | :--- | :--- | :---: |
+| **01** | **Student Grade Tracker** | Dynamic grade tracker supporting Console input, Java Swing GUI, and responsive Web UI. | `Java`, `Swing`, `HTML5`, `CSS3`, `JavaScript` | [View Task 1](./Task_1_Student_Grade_Tracker) |
 
 ---
 
-## 🛠️ Requirements & How to Run
+## 🚀 How to Run Tasks
 
-### 1. Running the Java Swing Desktop Application
-
-**Prerequisites**: JDK 8 or higher (Java 17+ / Java 26 recommended).
+### Task 1: Student Grade Tracker
+Navigate to the `Task_1_Student_Grade_Tracker` directory:
 
 ```bash
-# Compile the Java application
+cd Task_1_Student_Grade_Tracker
+
+# Run Java Swing GUI Application
 javac StudentGradeTracker.java
-
-# Run the Swing GUI application
 java StudentGradeTracker
-```
 
----
-
-### 2. Opening the Web Frontend
-
-Simply open `index.html` in any standard web browser (Chrome, Firefox, Edge, Safari):
-
-```bash
-# Double-click index.html or open via terminal
+# Or open Web Interface in browser
 start index.html
 ```
 
 ---
 
-## 📝 License
-
-Developed for CodeAlpha Internship - Task 1.
+## 📄 License
+Created for CodeAlpha Java Development Internship.
