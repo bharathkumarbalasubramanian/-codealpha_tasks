@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grade Tracker</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- App Header Banner -->
+        <header class="app-header">
+            <div class="header-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                </svg>
+            </div>
+            <div>
+                <h1>Student Grade Tracker</h1>
+                <p class="subtitle">Monitor, analyze, and manage student performance statistics</p>
+            </div>
+        </header>
+
+        <!-- Main Grid Layout -->
+        <main class="dashboard-grid">
+
+            <!-- 1. Input Section -->
+            <section class="card input-section">
+                <div class="card-header">
+                    <h2>Grade Entry</h2>
+                    <span class="badge badge-info">Input Form</span>
+                </div>
+                
+                <form id="grade-form" class="grade-form">
+                    <div class="form-group">
+                        <label for="grade-input">Student Grade (0 - 100)</label>
+                        <div class="input-wrapper">
+                            <input 
+                                type="number" 
+                                id="grade-input" 
+                                name="grade" 
+                                min="0" 
+                                max="100" 
+                                step="0.1" 
+                                placeholder="e.g. 88.5" 
+                                required
+                            >
+                            <span class="input-unit">%</span>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button type="submit" id="add-grade-btn" class="btn btn-primary">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                            Add Grade
+                        </button>
+                        <button type="button" id="reset-btn" class="btn btn-secondary">Reset All</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- 2. Statistics Section -->
+            <section class="stats-section">
+                <div class="stats-grid">
+
+                    <!-- Average Score Card -->
+                    <div class="stat-card stat-blue" id="avg-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Class Average</span>
+                            <div class="stat-icon icon-blue">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                                    <line x1="6" y1="20" x2="6" y2="14"></line>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="average-score">84.25%</div>
+                        <div class="stat-footer">Mean score across class</div>
+                    </div>
+
+                    <!-- Highest Score Card -->
+                    <div class="stat-card stat-green" id="highest-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Highest Score</span>
+                            <div class="stat-icon icon-green">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                    <polyline points="17 6 23 6 23 12"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="highest-score">96.50%</div>
+                        <div class="stat-footer">Top student achievement</div>
+                    </div>
+
+                    <!-- Lowest Score Card -->
+                    <div class="stat-card stat-amber" id="lowest-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Lowest Score</span>
+                            <div class="stat-icon icon-amber">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline>
+                                    <polyline points="17 18 23 18 23 12"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="lowest-score">68.00%</div>
+                        <div class="stat-footer">Minimum class benchmark</div>
+                    </div>
+
+                    <!-- Total Students Card -->
+                    <div class="stat-card stat-purple" id="total-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Total Students</span>
+                            <div class="stat-icon icon-purple">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="total-students">4</div>
+                        <div class="stat-footer">Grades recorded</div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- 3. Summary Report Section -->
+            <section class="card report-section">
+                <div class="card-header">
+                    <div>
+                        <h2>Grade Summary Report</h2>
+                        <p class="section-desc">Historical log of entered grades and status</p>
+                    </div>
+                    <span class="count-badge" id="entry-count-badge">4 Records</span>
+                </div>
+
+                <div class="table-container">
+                    <table id="grades-table" class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Student ID</th>
+                                <th>Grade Score</th>
+                                <th>Performance Grade</th>
+                            </tr>
+                        </thead>
+                        <tbody id="grades-table-body">
+                            <!-- Placeholder Rows -->
+                            <tr>
+                                <td>1</td>
+                                <td><span class="student-tag">STD-1001</span></td>
+                                <td class="grade-cell">85.50%</td>
+                                <td><span class="grade-badge badge-a">Grade A</span></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><span class="student-tag">STD-1002</span></td>
+                                <td class="grade-cell">92.00%</td>
+                                <td><span class="grade-badge badge-a">Grade A+</span></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td><span class="student-tag">STD-1003</span></td>
+                                <td class="grade-cell">68.00%</td>
+                                <td><span class="grade-badge badge-c">Grade C</span></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td><span class="student-tag">STD-1004</span></td>
+                                <td class="grade-cell">91.50%</td>
+                                <td><span class="grade-badge badge-a">Grade A+</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Interactive Script -->
+    <script src="app.js"></script>
+</body>
+</html>
