@@ -1,0 +1,10 @@
+[
+  {
+    "transactionId": "TXN-51A06A4E",
+    "reservationId": "BK-0B1E8E",
+    "amount": 585.0,
+    "paymentMethod": "Credit Card",
+    "paymentStatus": "REFUNDED",
+    "timestamp": "2026-09-18 19:25:13"
+  }
+]

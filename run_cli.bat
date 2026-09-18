@@ -1,0 +1,3 @@
+@echo off
+echo Starting Hotel Reservation System (Console CLI)...
+java -cp out com.hotel.Main --cli

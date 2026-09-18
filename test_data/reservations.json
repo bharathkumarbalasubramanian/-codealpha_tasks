@@ -1,0 +1,25 @@
+[
+  {
+    "reservationId": "BK-0B1E8E",
+    "guest": {
+      "guestId": "G30A4A1",
+      "name": "John Doe",
+      "email": "john@example.com",
+      "phone": "+1-555-0192"
+    },
+    "room": {
+      "roomId": "R202",
+      "roomNumber": "202",
+      "category": "DELUXE",
+      "pricePerNight": 195.0,
+      "isAvailable": true
+    },
+    "checkInDate": "2026-09-23",
+    "checkOutDate": "2026-09-26",
+    "totalNights": 3,
+    "totalPrice": 585.0,
+    "status": "CANCELLED",
+    "paymentTransactionId": "TXN-51A06A4E",
+    "createdAt": "2026-09-18 19:25:13"
+  }
+]

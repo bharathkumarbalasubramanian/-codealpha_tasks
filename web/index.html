@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grand Horizon Luxury Hotel | Reservation System</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <div class="brand">
+        <div class="brand-logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16"/><path d="M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4"/><path d="M10 9h4"/><path d="M10 13h4"/></svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">GRAND HORIZON</span>
+          <span class="brand-tagline">LUXURY HOTEL & SUITES</span>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <button class="nav-link active" data-tab="rooms-section">Browse Rooms</button>
+        <button class="nav-link" data-tab="bookings-section">My Bookings</button>
+        <button class="nav-link" data-tab="admin-section">Admin Dashboard</button>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-primary" onclick="scrollToSearch()">Book Now</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <div class="hero-badge">⭐ 5-STAR LUXURY EXPERIENCE</div>
+      <h1 class="hero-title">Experience Unmatched Luxury & Elegance</h1>
+      <p class="hero-subtitle">Discover curated suites, personalized services, and seamless room booking with instant confirmation.</p>
+
+      <!-- Quick Search Bar Widget -->
+      <div class="search-widget" id="search-widget">
+        <div class="search-field">
+          <label>CHECK-IN DATE</label>
+          <input type="date" id="checkin-date">
+        </div>
+        <div class="search-field">
+          <label>CHECK-OUT DATE</label>
+          <input type="date" id="checkout-date">
+        </div>
+        <div class="search-field">
+          <label>ROOM CATEGORY</label>
+          <select id="category-filter">
+            <option value="ALL">All Categories</option>
+            <option value="STANDARD">Standard Room</option>
+            <option value="DELUXE">Deluxe Room</option>
+            <option value="SUITE">Luxury Suite</option>
+            <option value="EXECUTIVE_SUITE">Executive Suite</option>
+          </select>
+        </div>
+        <div class="search-button-wrapper">
+          <button class="btn btn-accent btn-search" id="btn-search-rooms">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            Search Availability
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Body -->
+  <main class="container main-content">
+
+    <!-- TAB 1: BROWSE ROOMS SECTION -->
+    <section id="rooms-section" class="tab-content active">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Available Accommodations</h2>
+          <p class="section-desc">Select from our meticulously designed rooms & executive suites.</p>
+        </div>
+        
+        <!-- Category Filter Pills -->
+        <div class="category-pills">
+          <button class="pill active" data-cat="ALL">All Rooms</button>
+          <button class="pill" data-cat="STANDARD">Standard</button>
+          <button class="pill" data-cat="DELUXE">Deluxe</button>
+          <button class="pill" data-cat="SUITE">Suite</button>
+          <button class="pill" data-cat="EXECUTIVE_SUITE">Executive Suite</button>
+        </div>
+      </div>
+
+      <!-- Room Cards Grid -->
+      <div class="room-grid" id="room-grid">
+        <!-- Dynamically rendered by app.js -->
+      </div>
+    </section>
+
+    <!-- TAB 2: MY BOOKINGS SECTION -->
+    <section id="bookings-section" class="tab-content">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Manage Your Bookings</h2>
+          <p class="section-desc">Look up your reservation details, view printable receipts, or cancel your booking.</p>
+        </div>
+      </div>
+
+      <div class="lookup-card">
+        <h3>Lookup Reservation</h3>
+        <div class="lookup-form">
+          <input type="text" id="lookup-id-input" placeholder="Enter Booking Reference (e.g. BK-89A4C2)">
+          <button class="btn btn-primary" id="btn-lookup-booking">Find Reservation</button>
+        </div>
+      </div>
+
+      <div id="booking-lookup-result" class="booking-lookup-result hidden">
+        <!-- Rendered by app.js -->
+      </div>
+    </section>
+
+    <!-- TAB 3: ADMIN DASHBOARD SECTION -->
+    <section id="admin-section" class="tab-content">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Admin Operations Dashboard</h2>
+          <p class="section-desc">Real-time system stats, reservation records, and inventory controls.</p>
+        </div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-title">Total Rooms</span>
+          <span class="stat-value" id="stat-total-rooms">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-title">Confirmed Bookings</span>
+          <span class="stat-value" id="stat-confirmed-bookings">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-title">Total Revenue Generated</span>
+          <span class="stat-value" id="stat-total-revenue">$0.00</span>
+        </div>
+      </div>
+
+      <!-- Add Room Form & Bookings List -->
+      <div class="admin-grid">
+        <div class="admin-card">
+          <h3>Add New Room</h3>
+          <form id="add-room-form" class="form-grid">
+            <div class="form-group">
+              <label>Room Number</label>
+              <input type="text" id="admin-room-num" placeholder="e.g. 501" required>
+            </div>
+            <div class="form-group">
+              <label>Category</label>
+              <select id="admin-room-category">
+                <option value="STANDARD">Standard Room ($100/night)</option>
+                <option value="DELUXE">Deluxe Room ($180/night)</option>
+                <option value="SUITE">Luxury Suite ($320/night)</option>
+                <option value="EXECUTIVE_SUITE">Executive Suite ($500/night)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Price Per Night ($)</label>
+              <input type="number" id="admin-room-price" placeholder="180.00" step="0.01" required>
+            </div>
+            <button type="submit" class="btn btn-accent btn-full">Add Room to Inventory</button>
+          </form>
+        </div>
+
+        <div class="admin-card">
+          <h3>All Master Reservations</h3>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Booking ID</th>
+                  <th>Guest</th>
+                  <th>Room</th>
+                  <th>Dates</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="admin-bookings-tbody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BOOKING MODAL DIALOG -->
+  <div class="modal-overlay hidden" id="booking-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <h3 id="modal-room-title">Book Room #101</h3>
+          <p id="modal-room-subtitle">Standard Room • $100.00 / night</p>
+        </div>
+        <button class="modal-close" onclick="closeBookingModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="booking-summary-box">
+          <div class="summary-row">
+            <span>Check-In:</span>
+            <strong id="summary-checkin">2026-10-01</strong>
+          </div>
+          <div class="summary-row">
+            <span>Check-Out:</span>
+            <strong id="summary-checkout">2026-10-04</strong>
+          </div>
+          <div class="summary-row">
+            <span>Stay Duration:</span>
+            <strong id="summary-nights">3 Night(s)</strong>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-row">
+            <span>Room Subtotal:</span>
+            <span id="summary-subtotal">$300.00</span>
+          </div>
+          <div class="summary-row">
+            <span>Hotel Occupancy Tax (12%):</span>
+            <span id="summary-tax">$36.00</span>
+          </div>
+          <div class="summary-row total-row">
+            <span>Grand Total:</span>
+            <strong id="summary-total">$336.00</strong>
+          </div>
+        </div>
+
+        <form id="checkout-form" class="checkout-form">
+          <h4 class="form-section-title">Guest Information</h4>
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="guest-name" placeholder="John Doe" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" id="guest-email" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" id="guest-phone" placeholder="+1 (555) 019-2834" required>
+            </div>
+          </div>
+
+          <h4 class="form-section-title">Payment Simulation</h4>
+          <div class="form-group">
+            <label>Payment Method</label>
+            <select id="payment-method">
+              <option value="Credit Card">Credit Card</option>
+              <option value="Debit Card">Debit Card</option>
+              <option value="UPI">UPI / Digital Wallet</option>
+              <option value="PayPal">PayPal</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Card / Account Details</label>
+            <input type="text" id="payment-details" placeholder="4111 2222 3333 4444" value="4111-2222-3333-4444" required>
+          </div>
+
+          <button type="submit" class="btn btn-accent btn-full btn-large" id="btn-submit-booking">
+            Confirm Booking & Pay Now
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECEIPT MODAL DIALOG -->
+  <div class="modal-overlay hidden" id="receipt-modal">
+    <div class="modal-card receipt-card">
+      <div class="modal-header">
+        <h3>Official Payment Receipt</h3>
+        <button class="modal-close" onclick="closeReceiptModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <pre class="receipt-text" id="receipt-content"></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="window.print()">Print Receipt</button>
+        <button class="btn btn-primary" onclick="closeReceiptModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>&copy; 2026 Grand Horizon Luxury Hotel & Suites. All rights reserved.</p>
+      <p class="footer-sub">Full-Stack Java REST API & Modern Frontend Engine</p>
+    </div>
+  </footer>
+
+  <!-- Application JS -->
+  <script src="app.js"></script>
+</body>
+</html>

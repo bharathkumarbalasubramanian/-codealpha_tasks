@@ -1,0 +1,58 @@
+[
+  {
+    "roomId": "R202",
+    "roomNumber": "202",
+    "category": "DELUXE",
+    "pricePerNight": 195.0,
+    "isAvailable": true,
+    "amenities": ["Free WiFi", "King Bed", "4K Smart TV", "Mini Fridge", "City View"]
+  },
+  {
+    "roomId": "R301",
+    "roomNumber": "301",
+    "category": "SUITE",
+    "pricePerNight": 320.0,
+    "isAvailable": true,
+    "amenities": ["Free WiFi", "King Bed", "Living Room", "Jacuzzi", "Ocean View", "Breakfast Included"]
+  },
+  {
+    "roomId": "R302",
+    "roomNumber": "302",
+    "category": "SUITE",
+    "pricePerNight": 350.0,
+    "isAvailable": true,
+    "amenities": ["Free WiFi", "King Bed", "Living Room", "Jacuzzi", "Mountain View", "Breakfast Included"]
+  },
+  {
+    "roomId": "R401",
+    "roomNumber": "401",
+    "category": "EXECUTIVE_SUITE",
+    "pricePerNight": 500.0,
+    "isAvailable": true,
+    "amenities": ["Free WiFi", "2 King Beds", "Private Lounge Access", "Jacuzzi", "Panoramic View", "24/7 Butler Service"]
+  },
+  {
+    "roomId": "R101",
+    "roomNumber": "101",
+    "category": "STANDARD",
+    "pricePerNight": 100.0,
+    "isAvailable": true,
+    "amenities": ["Free WiFi", "Queen Bed", "TV", "Air Conditioning"]
+  },
+  {
+    "roomId": "R102",
+    "roomNumber": "102",
+    "category": "STANDARD",
+    "pricePerNight": 105.0,
+    "isAvailable": true,
+    "amenities": ["Free WiFi", "Queen Bed", "TV", "Desk"]
+  },
+  {
+    "roomId": "R201",
+    "roomNumber": "201",
+    "category": "DELUXE",
+    "pricePerNight": 180.0,
+    "isAvailable": true,
+    "amenities": ["Free WiFi", "King Bed", "4K Smart TV", "Mini Fridge", "Balcony"]
+  }
+]

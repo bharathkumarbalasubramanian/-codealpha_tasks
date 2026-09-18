@@ -1,0 +1,3 @@
+@echo off
+echo Starting Hotel Reservation System (Desktop GUI)...
+java -cp out com.hotel.Main
