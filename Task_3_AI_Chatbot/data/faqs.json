@@ -1,0 +1,65 @@
+[
+  {
+    "tag": "greeting",
+    "category": "General",
+    "patterns": ["hello", "hi", "hey", "good morning", "good evening", "greetings", "whats up", "howdy"],
+    "responses": ["Hello! How can I help you today?", "Hi there! What can I assist you with?", "Greetings! Feel free to ask me any question!"],
+    "regexRule": "^(hi|hello|hey|greetings|howdy)(!|\\s|$)"
+  },
+  {
+    "tag": "goodbye",
+    "category": "General",
+    "patterns": ["bye", "goodbye", "see you later", "exit", "quit", "talk to you later", "have a nice day"],
+    "responses": ["Goodbye! Have a great day ahead!", "Bye! Let me know if you need anything else.", "See you later! Take care!"],
+    "regexRule": "^(bye|goodbye|exit|quit)(!|\\s|$)"
+  },
+  {
+    "tag": "bot_capabilities",
+    "category": "General",
+    "patterns": ["what can you do", "help me", "who are you", "what is your purpose", "features", "capabilities"],
+    "responses": ["I am an AI-powered Chatbot built with Natural Language Processing (NLP) in Java! I can answer FAQs, process natural language questions using TF-IDF and Cosine Similarity, analyze sentiment, and learn new intents dynamically.", "I assist with FAQs, technical queries, university information, and e-commerce orders. You can also train me live via the FAQ Trainer interface!"],
+    "regexRule": null
+  },
+  {
+    "tag": "java_programming",
+    "category": "Technical",
+    "patterns": ["what is java", "explain java jdk", "jvm vs jre", "why use java", "java features", "object oriented programming"],
+    "responses": ["Java is a popular, class-based, object-oriented programming language designed for platform independence via the Java Virtual Machine (JVM). Key features include Write Once, Run Anywhere (WORA), robust memory management, and multi-threading.", "JDK is the Development Kit needed to build Java programs, JRE is the Runtime Environment needed to run them, and JVM (Java Virtual Machine) executes compiled bytecode."],
+    "regexRule": null
+  },
+  {
+    "tag": "nlp_explanation",
+    "category": "AI/ML",
+    "patterns": ["what is nlp", "how does nlp work", "explain tfidf", "cosine similarity in nlp", "stemming vs lemmatization"],
+    "responses": ["Natural Language Processing (NLP) is a branch of Artificial Intelligence that enables computers to understand, interpret, and manipulate human language.", "In this chatbot: 1) Tokenization splits text, 2) StopWords filter noise, 3) Porter Stemmer reduces root words, 4) TF-IDF computes term importance, and 5) Cosine Similarity computes vector similarity to match your intent!"],
+    "regexRule": null
+  },
+  {
+    "tag": "order_shipping",
+    "category": "E-Commerce",
+    "patterns": ["where is my order", "track order", "shipping policy", "delivery status", "refund policy", "cancel order"],
+    "responses": ["You can track your order in real time by logging into your account under 'My Orders'. Standard shipping takes 3-5 business days.", "Our return policy allows hassle-free returns within 30 days of receipt. Refunds are processed back to your original payment method within 5 days."],
+    "regexRule": null
+  },
+  {
+    "tag": "university_admission",
+    "category": "Academic",
+    "patterns": ["how to apply", "admission deadline", "tuition fees", "courses offered", "scholarships available"],
+    "responses": ["Admissions for the upcoming academic year are open! Applications can be submitted online via our admissions portal before July 31st.", "We offer merit-based scholarships covering up to 100% of tuition fees for high-performing applicants."],
+    "regexRule": null
+  },
+  {
+    "tag": "contact_support",
+    "category": "Support",
+    "patterns": ["contact human", "talk to agent", "customer service phone", "support email", "speak to representative"],
+    "responses": ["You can reach our human support team 24/7 via email at support@aichatbot.org or call our hotline at 1-800-555-CHAT."],
+    "regexRule": null
+  },
+  {
+    "tag": "custom_greeting",
+    "category": "General",
+    "patterns": ["howdy bot", "hello friend"],
+    "responses": ["Welcome my friend! Glad to see you here."],
+    "regexRule": null
+  }
+]

@@ -1,0 +1,3 @@
+@echo off
+echo Starting Java AI Chatbot Desktop Swing GUI...
+java -cp bin com.chatbot.App --swing

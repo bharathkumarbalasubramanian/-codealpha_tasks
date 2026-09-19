@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Chatbot powered by Java NLP techniques, Machine Learning TF-IDF, Cosine Similarity, and dynamic FAQ training.">
+    <title>Java AI Chatbot - Intelligent NLP Assistant</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+
+    <div class="app-background">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+    </div>
+
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="mainSidebar">
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <div class="brand-text">
+                    <h1>Java AI Chatbot</h1>
+                    <span class="version-tag">v2.5 • NLP Engine</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <button class="nav-btn active" data-tab="tab-chat" id="navBtnChat">
+                    <i class="fa-solid fa-comments"></i>
+                    <span>Live Chat Studio</span>
+                </button>
+                <button class="nav-btn" data-tab="tab-trainer" id="navBtnTrainer">
+                    <i class="fa-solid fa-sliders"></i>
+                    <span>FAQ Trainer & Model</span>
+                </button>
+                <button class="nav-btn" data-tab="tab-analytics" id="navBtnAnalytics">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>NLP Analytics</span>
+                </button>
+            </nav>
+
+            <div class="engine-status-card">
+                <div class="status-header">
+                    <span class="status-dot online"></span>
+                    <span class="status-title">NLP Engine Active</span>
+                </div>
+                <div class="status-details">
+                    <div class="status-item">
+                        <span>Algorithm:</span>
+                        <strong>TF-IDF + Cosine Sim</strong>
+                    </div>
+                    <div class="status-item">
+                        <span>Stemmer:</span>
+                        <strong>Porter Algorithm</strong>
+                    </div>
+                    <div class="status-item">
+                        <span>Backend:</span>
+                        <strong>Java 26 HTTP Rest</strong>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+
+            <!-- TAB 1: LIVE CHAT STUDIO -->
+            <section class="tab-pane active" id="tab-chat">
+                <header class="content-header">
+                    <div class="header-titles">
+                        <h2>Interactive AI Conversation</h2>
+                        <p>Ask frequently asked questions or query technical & business topics in natural language.</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn-secondary" id="btnToggleSpeech">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <span id="speechStateText">Voice Output: ON</span>
+                        </button>
+                        <button class="btn btn-outline" id="btnClearChat">
+                            <i class="fa-solid fa-trash-can"></i>
+                            <span>Clear Chat</span>
+                        </button>
+                    </div>
+                </header>
+
+                <div class="chat-workspace">
+                    <div class="chat-main-column">
+                        <div class="chat-messages-container" id="chatMessages">
+                            <!-- Welcome Message -->
+                            <div class="chat-bubble bot-bubble">
+                                <div class="avatar">
+                                    <i class="fa-solid fa-robot"></i>
+                                </div>
+                                <div class="bubble-content">
+                                    <div class="bubble-header">
+                                        <span class="sender-name">AI Assistant</span>
+                                        <span class="badge badge-indigo">System Initialized</span>
+                                    </div>
+                                    <div class="message-text">
+                                        Hello! Welcome to the <strong>Java AI Chatbot</strong>. I use natural language processing (NLP), Porter stemming, TF-IDF vectorization, and cosine similarity matching to answer your queries in real time.
+                                    </div>
+                                    <div class="nlp-mini-meta">
+                                        <span><i class="fa-solid fa-bolt"></i> Match: RULE_REGEX</span>
+                                        <span><i class="fa-solid fa-shield-halved"></i> Confidence: 100%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Typing Indicator -->
+                        <div class="typing-indicator hidden" id="typingIndicator">
+                            <div class="avatar"><i class="fa-solid fa-robot"></i></div>
+                            <div class="dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <span class="typing-text">AI is computing TF-IDF vectors...</span>
+                        </div>
+
+                        <!-- Quick Suggestions Chips -->
+                        <div class="quick-suggestions" id="quickSuggestions">
+                            <span class="chip-label">Try asking:</span>
+                            <button class="chip-btn" data-query="What is Java programming language?">What is Java?</button>
+                            <button class="chip-btn" data-query="How does NLP tokenization and TF-IDF work?">Explain NLP</button>
+                            <button class="chip-btn" data-query="Where is my shipping order?">Track Order</button>
+                            <button class="chip-btn" data-query="How do I apply for scholarships?">Scholarships</button>
+                            <button class="chip-btn" data-query="How can I contact customer support?">Contact Support</button>
+                        </div>
+
+                        <!-- Chat Input Box -->
+                        <div class="chat-input-area">
+                            <div class="input-wrapper">
+                                <input type="text" id="userChatInput" placeholder="Type your question here (e.g. 'What is Java JVM?')..." autocomplete="off">
+                                <button class="mic-btn" id="btnMicInput" title="Voice Input (Speech-to-Text)">
+                                    <i class="fa-solid fa-microphone"></i>
+                                </button>
+                                <button class="send-btn" id="btnSendMessage" title="Send Message">
+                                    <span>Send</span>
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Side Inspector Drawer -->
+                    <aside class="chat-inspector-column">
+                        <div class="inspector-card">
+                            <div class="card-title">
+                                <i class="fa-solid fa-microchip"></i>
+                                <span>NLP Query Inspector</span>
+                            </div>
+
+                            <div class="inspector-section">
+                                <label>Detected Intent</label>
+                                <div class="intent-badge-box" id="inspectIntentTag">None</div>
+                            </div>
+
+                            <div class="inspector-section">
+                                <label>Confidence Rating</label>
+                                <div class="confidence-bar-wrapper">
+                                    <div class="confidence-bar" id="inspectConfBar" style="width: 0%;"></div>
+                                </div>
+                                <div class="confidence-value" id="inspectConfValue">0%</div>
+                            </div>
+
+                            <div class="inspector-section">
+                                <label>Match Mechanism</label>
+                                <span class="badge badge-outline" id="inspectMatchType">-</span>
+                            </div>
+
+                            <div class="inspector-section">
+                                <label>Sentiment Analysis</label>
+                                <span class="badge badge-neutral" id="inspectSentiment">NEUTRAL</span>
+                            </div>
+
+                            <div class="inspector-section">
+                                <label>Tokenization</label>
+                                <div class="token-cloud" id="inspectTokens">
+                                    <span class="token-empty">No tokens processed yet</span>
+                                </div>
+                            </div>
+
+                            <div class="inspector-section">
+                                <label>Porter Stemming Output</label>
+                                <div class="token-cloud stemmed" id="inspectStemmed">
+                                    <span class="token-empty">No stems computed yet</span>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <!-- TAB 2: FAQ TRAINER & MODEL STUDIO -->
+            <section class="tab-pane" id="tab-trainer">
+                <header class="content-header">
+                    <div class="header-titles">
+                        <h2>FAQ Trainer & Intent Model Studio</h2>
+                        <p>Train the AI chatbot live by adding new intent patterns, questions, responses, and custom rule matching.</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn-primary" id="btnOpenAddModal">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Create New Intent</span>
+                        </button>
+                    </div>
+                </header>
+
+                <div class="trainer-workspace">
+                    <div class="trainer-table-card">
+                        <div class="table-header-bar">
+                            <h3>Trained Intents Repository</h3>
+                            <div class="table-search">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="text" id="searchFaqInput" placeholder="Filter intents or patterns...">
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="faq-table" id="faqTable">
+                                <thead>
+                                    <tr>
+                                        <th>Tag / Identifier</th>
+                                        <th>Category</th>
+                                        <th>Training Patterns (Questions)</th>
+                                        <th>Responses</th>
+                                        <th>Regex Rule</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="faqTableBody">
+                                    <!-- Dynamic Rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: ANALYTICS & SYSTEM METRICS -->
+            <section class="tab-pane" id="tab-analytics">
+                <header class="content-header">
+                    <div class="header-titles">
+                        <h2>NLP Engine Analytics & Diagnostics</h2>
+                        <p>Real-time metrics on chatbot interaction accuracy, intent distribution, and query success rate.</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn-secondary" id="btnRefreshAnalytics">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                            <span>Refresh Data</span>
+                        </button>
+                    </div>
+                </header>
+
+                <div class="analytics-workspace">
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-icon icon-indigo"><i class="fa-solid fa-comments"></i></div>
+                            <div class="metric-data">
+                                <span class="metric-number" id="statTotalQueries">0</span>
+                                <span class="metric-label">Total Queries Handled</span>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-icon icon-emerald"><i class="fa-solid fa-circle-check"></i></div>
+                            <div class="metric-data">
+                                <span class="metric-number" id="statMatchRate">0%</span>
+                                <span class="metric-label">Intent Match Accuracy</span>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-icon icon-cyan"><i class="fa-solid fa-brain"></i></div>
+                            <div class="metric-data">
+                                <span class="metric-number" id="statTotalIntents">0</span>
+                                <span class="metric-label">Active Trained Intents</span>
+                            </div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-icon icon-rose"><i class="fa-solid fa-circle-question"></i></div>
+                            <div class="metric-data">
+                                <span class="metric-number" id="statFallbackCount">0</span>
+                                <span class="metric-label">Fallback Triggered</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="analytics-charts-row">
+                        <div class="chart-card">
+                            <h3><i class="fa-solid fa-layer-group"></i> Architecture Summary</h3>
+                            <div class="tech-stack-list">
+                                <div class="tech-item">
+                                    <div class="tech-icon"><i class="fa-brands fa-java"></i></div>
+                                    <div class="tech-info">
+                                        <h4>Java 26 HTTP Server & REST API</h4>
+                                        <p>Multi-threaded lightweight HTTP server handling REST endpoints with zero external dependencies.</p>
+                                    </div>
+                                </div>
+                                <div class="tech-item">
+                                    <div class="tech-icon"><i class="fa-solid fa-square-root-variable"></i></div>
+                                    <div class="tech-info">
+                                        <h4>TF-IDF & Cosine Vector Space Model</h4>
+                                        <p>Converts normalized stems into high-dimensional term vectors and computes angular cosine distances.</p>
+                                    </div>
+                                </div>
+                                <div class="tech-item">
+                                    <div class="tech-icon"><i class="fa-solid fa-scissors"></i></div>
+                                    <div class="tech-info">
+                                        <h4>Porter Stemming & Token Cleaning</h4>
+                                        <p>Strips inflections, suffixes, and stop words to map raw user text into pure semantic roots.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- MODAL: CREATE / EDIT INTENT -->
+    <div class="modal-overlay hidden" id="intentModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modalTitle">Create New Intent / FAQ</h3>
+                <button class="close-modal-btn" id="btnCloseModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="intentForm">
+                    <div class="form-group">
+                        <label for="inputTag">Intent Tag / Unique ID *</label>
+                        <input type="text" id="inputTag" placeholder="e.g. java_exceptions, refund_request" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputCategory">Category *</label>
+                        <input type="text" id="inputCategory" placeholder="e.g. Technical, E-Commerce, General" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPatterns">Training Patterns / Questions (One per line) *</label>
+                        <textarea id="inputPatterns" rows="4" placeholder="How do I handle exceptions in Java?&#10;Explain try catch blocks&#10;What is NullPointerException?" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputResponses">Bot Responses (One per line) *</label>
+                        <textarea id="inputResponses" rows="4" placeholder="Exceptions in Java are handled using try, catch, and finally blocks to catch runtime errors smoothly." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputRegex">Optional Regex Rule Pattern</label>
+                        <input type="text" id="inputRegex" placeholder="e.g. ^(exception|try catch)(!|\s|$)">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="btnCancelModal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="btnSaveIntent">Save & Train Model</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="app.js"></script>
+</body>
+</html>
